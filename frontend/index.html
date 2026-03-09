@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>E-shop elektronika</title>
+</head>
+
+<body>
+
+<h1>Produkty</h1>
+
+<button onclick="nacitajProdukty()">Načítať produkty</button>
+
+<ul id="produkty"></ul>
+
+
+<script>
+
+async function nacitajProdukty(){
+
+    const response = await fetch("http://localhost:3000/produkty")
+
+    const data = await response.json()
+
+    const list = document.getElementById("produkty")
+
+    list.innerHTML = ""
+
+    data.forEach(p => {
+
+        list.innerHTML += `
+            <li>
+                ${p.nazov} - ${p.cena} €
+            </li>
+        `
+    })
+
+}
+
+</script>
+
+</body>
+</html>
